@@ -10,10 +10,65 @@ Modellizzare la struttura di una tabella per memorizzare tutti i dati riguardant
 - ogni Studente è iscritto ad un solo Corso di Laurea;
 - ogni Studente può iscriversi a più appelli di Esame;
 
-- per ogni appello d'Esame a cui lo Studente ha partecipato, è necessario memorizzare il voto ottenuto, anche se non sufficiente Pensiamo a quali entità (tabelle) creare per il nostro database e cerchiamo poi di stabilirne le relazioni.
-
- -->
+- per ogni appello d'Esame a cui lo Studente ha partecipato, è necessario memorizzare il voto ottenuto, anche se non sufficiente Pensiamo a quali entità (tabelle) creare per il nostro database e cerchiamo poi di stabilirne le relazioni. -->
 
 # Database Università
 
-## Entità universita <!-- Prima Entità -->
+## Departments <!--sono presenti diversi Dipartimenti (es.: Lettere e Filosofia, Matematica, Ingegneria ecc.); -->
+
+id:
+name:
+address:
+site:
+country:
+desc:
+
+## Degree <!-- ogni Dipartimento offre più Corsi di Laurea (es.: Civiltà e Letterature Classiche, Informatica, Ingegneria Elettronica ecc..) -->
+
+id:
+name:
+date:
+
+## Courses <!-- ogni Corso di Laurea prevede diversi Corsi (es.: Letteratura Latina, Sistemi Operativi 1, Analisi Matematica 2 ecc.) -->
+
+id:
+name:
+credits:
+price:
+type:
+calendar:
+desc:
+cfu_numbers:
+exams:
+?teacher_id?
+
+## Teachers <!-- ogni Corso può essere tenuto da diversi Insegnanti; -->
+
+id:
+name:
+lastname:
+qualify:
+
+## Exams <!-- ogni Studente è iscritto ad un solo Corso di Laurea -->
+
+id:
+name:
+title:
+vote:
+cfu:
+
+## Appeal <!-- ogni Studente può iscriversi a più appelli di Esame -->
+
+id:
+date:
+type:
+
+## Students <!-- ogni Studente -->
+
+id:
+name:
+lastname:
+age:
+genre:
+email:
+cell_number:
