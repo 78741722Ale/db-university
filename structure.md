@@ -21,26 +21,29 @@ name: VARCHAR(40), NOTNULL
 address: VARCHAR(40), NOTNULL
 website: VARCHAR(150), NOTNULL
 country: DEFAULT("it-IT"), NOTNULL
-desc: TEXT, NULL
+description: TEXT, NULL
+?course_id? : FK, NOTNULL, AUTOINCREMENTAL, TINYINT
 
 ## Degree <!-- ogni Dipartimento offre più Corsi di Laurea (es.: Civiltà e Letterature Classiche, Informatica, Ingegneria Elettronica ecc..) -->
 
 id: PK, NOTNULL, INDEX, UNIQUE, AUTOINCREMENTAL
-name: VARCHAR(40), NOTNULL
+title: VARCHAR(40), NOTNULL
 date: DATETIME NOTNULL
 type: VARCHAR(50), NOTNULL
+?course_id? : FK, NOTNULL, AUTOINCREMENTAL, TINYINT
+?student_id?: FK, NOTNULL, AUTOINCREMENTAL, TINYINT
 
 ## Courses <!-- ogni Corso di Laurea prevede diversi Corsi (es.: Letteratura Latina, Sistemi Operativi 1, Analisi Matematica 2 ecc.) -->
 
 id: PK, NOTNULL, INDEX, UNIQUE, AUTOINCREMENTAL
 name: VARCHAR(50), NOTNULL
-credits: TINYINT, NOTNULL
-price: FLOAT(7,2)
+cfu: TINYINT, NOTNULL
+price: FLOAT(7,2), NOTNULL
 type: VARCHAR(50), NOTNULL
 calendar: YEAR, NOTNULL
 desc: TEXT, NOTNULL
-exams: VARCHAR(50), NOTNULL
-?teacher_id?
+?student_id?: FK, NOTNULL, AUTOINCREMENTAL, TINYINT
+?teacher_id?: FK, NOTNULL, AUTOINCREMENTAL, TINYINT
 
 ## Teachers <!-- ogni Corso può essere tenuto da diversi Insegnanti; -->
 
@@ -55,19 +58,27 @@ qualify: VARCHAR(40), NOTNULL
 id: PK, NOTNULL, INDEX, UNIQUE, AUTOINCREMENTAL
 title: VARCHAR(50), NOTNULL
 cfu: TINYINT, NOTNULL
+?student_id?: FK, NOTNULL, AUTOINCREMENTAL, TINYINT
+?teacher_id?: FK, NOTNULL, AUTOINCREMENTAL, TINYINT
 
 ## Appeal <!-- ogni Studente può iscriversi a più appelli di Esame -->
 
 id: PK, NOTNULL, INDEX, UNIQUE, AUTOINCREMENTAL
 date: DATETIME NOTNULL
+cfu: TINYINT, NOTNULL
 type: VARCHAR(50), NOTNULL
+?student_id?: FK, NOTNULL, AUTOINCREMENTAL, TINYINT
+?teacher_id?: FK, NOTNULL, AUTOINCREMENTAL, TINYINT
 
 ## Students <!-- ogni Studente -->
 
 id: PK, NOTNULL, INDEX, UNIQUE, AUTOINCREMENTAL
 name: VARCHAR(50), NOTNULL
 lastname: VARCHAR(50), NOTNULL
+serial_number: VARCHAR(50), NOTNULL, UNIQUE,
+total_cfu: SMALLINT, NOTNULL
 age: TINYINT, NOTNULL
 genre: VARCHAR(30), NULL
+taxes: FLOAT(7,2), NOTNULL
 email: VARCHAR(50), NOTNULL
-cell_number: VARCHAR(15) NOTNULL
+cell_number: VARCHAR(15) NULL
