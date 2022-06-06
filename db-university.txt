@@ -13,6 +13,15 @@ Query = SELECT * FROM `courses` WHERE `cfu`> 10;
 3. Selezionare tutti gli studenti che hanno più di 30 anni
 Query = SELECT * FROM `students` WHERE YEAR(date_of_birth) >= 1991;
 
+<!-- Correzione in classe della 3° Query -->
+Query corretta = SELECT * FROM `students` WHERE YEAR(CURDATE()) - YEAR(date_of_birth) > 30
+
+/* 
+CURDATE è una function di MySQL, se la differenza tra la data attuale e la data di 
+nascita è maggiore di 30 allora rilascia il risultato 
+*/
+
+
 ************************
 ************************
 
@@ -24,6 +33,12 @@ Query = SELECT * FROM `courses` WHERE `period` = 'I semestre' AND `year` = 1;
 
 5. Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del 20/06/2020 (21 -> ok)
 Query = SELECT * FROM `exams` WHERE `hour` > '14:00:00' AND `date` = '2020/06/20';
+
+<!-- Correzione in classe della 5° Query -->
+Query corretta = SELECT * FROM `exams` WHERE HOUR(`hour`) >= '14' AND `date` = '2020/06/20';
+/* 
+HOUR() => è un method per l'ora 
+*/
 
 
 ************************
